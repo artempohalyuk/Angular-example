@@ -1,0 +1,27 @@
+<form [formGroup]="createTaskForm" (ngSubmit)="onCreateTask()">
+  <mat-form-field>
+    <input type="text"
+      matInput
+      placeholder="Enter task title"
+      formControlName="title"
+      required>
+    <mat-error *ngIf="createTaskForm.get( 'title' ).invalid">{{errorsMsg}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text"
+      matInput
+      placeholder="Enter task description"
+      formControlName="description"
+      required>
+    <mat-error *ngIf="createTaskForm.get( 'description' ).invalid">{{errorsMsg}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text"
+      matInput
+      placeholder="Enter task date"
+      formControlName="date"
+      required>
+    <mat-error *ngIf="createTaskForm.get( 'date' ).invalid">{{errorsMsg}}</mat-error>
+  </mat-form-field>
+  <button mat-button type="submit">Создать</button>
+</form>

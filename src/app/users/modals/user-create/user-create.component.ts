@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.sass']
+  styleUrls: ['./user-create.component.scss']
 })
 export class UserCreateComponent implements OnInit {
 

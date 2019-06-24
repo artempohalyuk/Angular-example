@@ -1,3 +1,12 @@
-<app-navigation></app-navigation>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-icon aria-hidden="false" aria-label="group-icon" routerLink="/users">group</mat-icon>
+    <mat-icon aria-hidden="false" aria-label="home-icon" routerLink="/home">home</mat-icon>
+    <mat-icon aria-hidden="false" aria-label="settings-icon" routerLink="/profile">settings</mat-icon>
+    <mat-icon aria-hidden="false" aria-label="view_list-icon" routerLink="/tasks">view_list</mat-icon>
+  </mat-sidenav>
 
-<router-outlet></router-outlet>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
