@@ -1,5 +1,5 @@
-<div [formGroup]="inputForm">
-  <mat-form-field>
+<form class="form" [formGroup]="inputForm">
+  <mat-form-field class="form__field">
     <input type="email"
       matInput
       placeholder="Enter your email"
@@ -7,7 +7,7 @@
       required>
     <mat-error *ngIf="inputForm.get( 'email' ).invalid">{{errorsMsg}}</mat-error>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="form__field">
     <input type="password"
       matInput
       placeholder="Enter your password"
@@ -15,4 +15,4 @@
       required>
     <mat-error *ngIf="errorsMsg">{{errorsMsg}}</mat-error>
   </mat-form-field>
-</div>
+</form>

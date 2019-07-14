@@ -18,7 +18,7 @@ export class TasksService {
   ) {}
 
   getTasks() {
-    if ( this._fireBase.getAuthenticated() ) {
+    if ( this._fireBase.authenticated ) {
       return this.usersCollection.doc( this._fireBase.currentUser.uid )
         .collection( 'tasks', ref => ref.orderBy( 'task_date' ) ).snapshotChanges()
         .pipe(

@@ -1,7 +1,11 @@
-<div>
-  <app-authorize-form [inputForm]="loginForm" [errorsMsg]="errorMsg"></app-authorize-form>
+<div class="login-form-wrap">
+  <div class="login-form">
+      <app-authorize-form [inputForm]="loginForm" [errorsMsg]="errorMsg"></app-authorize-form>
 
-  <button mat-button (click)="onSignIn()">Войти</button>
+      <div class="login-form__btns">
+          <button class="login-form__submit" mat-raised-button color="primary" (click)="onSignIn()">Sign in</button>
 
-  <p (click)="onOpenRegistation()">Зарегистрировать</p>
+          <a class="login-form__registration" mat-button color="primary" (click)="onOpenRegistation()">Sign up</a>
+      </div>
+  </div>
 </div>

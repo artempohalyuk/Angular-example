@@ -1,10 +1,22 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened>
-    <mat-icon aria-hidden="false" aria-label="group-icon" routerLink="/users">group</mat-icon>
-    <mat-icon aria-hidden="false" aria-label="home-icon" routerLink="/home">home</mat-icon>
-    <mat-icon aria-hidden="false" aria-label="settings-icon" routerLink="/profile">settings</mat-icon>
-    <mat-icon aria-hidden="false" aria-label="view_list-icon" routerLink="/tasks">view_list</mat-icon>
-    <mat-icon aria-hidden="false" aria-label="exit_to_app-icon" routerLink="/login" (click)="onSignOut()">exit_to_app</mat-icon>
+<mat-sidenav-container class="container">
+  <mat-sidenav *ngIf="fireBase.authenticated" mode="side" opened class="sidebar">
+    <ul class="sidebar-menu custom-list">
+      <li class="sidebar-menu__item sidebar-menu__item_logo">
+          <mat-icon aria-hidden="false" aria-label="spa-icon" routerLink="/">spa</mat-icon>
+      </li>
+      <li class="sidebar-menu__item">
+          <mat-icon aria-hidden="false" aria-label="home-icon" routerLink="/home">home</mat-icon>
+      </li>
+      <li class="sidebar-menu__item">
+          <mat-icon aria-hidden="false" aria-label="settings-icon" routerLink="/profile">settings</mat-icon>
+      </li>
+      <li class="sidebar-menu__item">
+          <mat-icon aria-hidden="false" aria-label="view_list-icon" routerLink="/tasks">view_list</mat-icon>
+      </li>
+      <li class="sidebar-menu__item sidebar-menu__item_end">
+          <mat-icon aria-hidden="false" aria-label="exit_to_app-icon" routerLink="/login" (click)="onSignOut()">exit_to_app</mat-icon>
+      </li>
+    </ul>
   </mat-sidenav>
 
   <mat-sidenav-content>

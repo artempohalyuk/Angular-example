@@ -1,4 +1,8 @@
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-@import "assets/styles/nav.scss"
+@import "assets/styles/base.scss";
+@import "assets/styles/blocks/container.scss";
+@import "assets/styles/blocks/sidebar.scss";
+@import "assets/styles/blocks/login.scss";
+@import "assets/styles/blocks/form.scss";

@@ -7,10 +7,9 @@ import { FireBase } from './core/firebase.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor( private _fireBase: FireBase ) {
-  }
+  constructor( public fireBase: FireBase ) {}
 
   onSignOut() {
-    this._fireBase.signOut();
+    this.fireBase.signOut();
   }
 }

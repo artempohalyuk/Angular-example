@@ -1,0 +1,46 @@
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  margin: 0;
+  padding: 0 15px;
+  text-align: center;
+
+  .sidebar-menu__item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    transition: .5s;
+    cursor: pointer;
+
+    &:hover:not( .sidebar-menu__item_logo ) {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .mat-icon {
+      width: 1.875rem;
+      height: 1.875rem;
+      font-size: 1.875rem;
+    }
+
+    &_logo {
+      margin-top: 20px;
+      margin-bottom: 50px;
+      padding: 0;
+      color: #e5f50f;
+
+      .mat-icon {
+        width: 3.125rem;
+        height: 3.125rem;
+        font-size: 3.125rem;
+      }
+    }
+
+    &_end {
+      margin-top: auto;
+    }
+  }
+}

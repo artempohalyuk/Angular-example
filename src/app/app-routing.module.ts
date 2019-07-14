@@ -5,11 +5,10 @@ import { AuthGuard } from './core/guards/auth.guard';
 // import { HomeComponent } from './core/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full'  },
-  { path: 'users', loadChildren: './users/users.module#UsersModule' },
-  { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
-  { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule' },
-  { path: 'tasks', loadChildren: './modules/tasks/tasks.module#TasksModule', canActivate: [ AuthGuard ] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'home', loadChildren: './modules/home/home.module#HomeModule', canLoad: [ AuthGuard ] },
+  { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule', canLoad: [ AuthGuard ] },
+  { path: 'tasks', loadChildren: './modules/tasks/tasks.module#TasksModule', canLoad: [ AuthGuard ] },
 ];
 
 @NgModule({

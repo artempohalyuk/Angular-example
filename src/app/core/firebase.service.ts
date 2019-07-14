@@ -25,6 +25,11 @@ export class FireBase {
     );
   }
 
+  get authenticated(): boolean {
+    console.log( this.currentUser )
+    return this.currentUser !== null;
+  }
+
   getAuthenticated(): boolean {
     return this.currentUser !== null;
   }

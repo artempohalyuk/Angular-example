@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanLoad, Route } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FireBase } from '../firebase.service';
 import { map } from 'rxjs/operators';
@@ -7,13 +7,11 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanLoad {
   constructor( private _firebase: FireBase, private router: Router ) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  canLoad( route: Route ) {
 
-      if (this._firebase.getAuthenticated()) { return true; }
+      if (this._firebase.authenticated) { return true; }
 
       return this._firebase.getCurrentUserObservable()
         .pipe(
