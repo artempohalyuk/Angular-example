@@ -10,11 +10,9 @@ import { CreateTaskComponent } from './modals/create-task/create-task.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  { path: '', component: TasksComponent, children: [
-    { path: 'list', component: TasksListComponent, children: [
-      { path: 'item/:id', component: TasksItemComponent },
-    ] },
-  ]},
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: 'list', component: TasksListComponent },
+  { path: 'list/item/:id', component: TasksItemComponent },
 
 ];
 

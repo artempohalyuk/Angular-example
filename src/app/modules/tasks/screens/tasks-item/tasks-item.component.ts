@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tasks-item',
@@ -8,9 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TasksItemComponent implements OnInit {
   @Input() task;
 
-  constructor() { }
+  constructor( private _router: ActivatedRoute ) { }
 
   ngOnInit() {
+    this._router.params.subscribe(
+      res => console.log( res )
+    )
   }
 
 }

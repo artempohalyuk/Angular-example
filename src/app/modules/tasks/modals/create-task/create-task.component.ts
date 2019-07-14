@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FireBase } from 'src/app/core/firebase.service';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-create-task',
@@ -13,7 +14,7 @@ export class CreateTaskComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _firebase: FireBase
+    private _taskService: TasksService
   ) { }
 
   ngOnInit() {
@@ -24,12 +25,14 @@ export class CreateTaskComponent implements OnInit {
     this.createTaskForm = this._fb.group({
       title: [ '' ],
       description: [ '' ],
-      date: [ '' ]
+      task_date: [ '' ],
     });
   }
 
   onCreateTask() {
-    this._firebase.createTask( this.createTaskForm.value );
+    this.createTaskForm.value.task_date = Math.floor( Date.parse( this.createTaskForm.get( 'task_date' ).value ) / 1000 );
+
+    this._taskService.createTask( this.createTaskForm.value );
   }
 
 }

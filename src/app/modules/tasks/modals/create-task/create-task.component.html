@@ -16,12 +16,10 @@
     <mat-error *ngIf="createTaskForm.get( 'description' ).invalid">{{errorsMsg}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input type="text"
-      matInput
-      placeholder="Enter task date"
-      formControlName="date"
-      required>
-    <mat-error *ngIf="createTaskForm.get( 'date' ).invalid">{{errorsMsg}}</mat-error>
+    <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" placeholder="Choose a date" formControlName="task_date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+    <mat-error *ngIf="createTaskForm.get( 'task_date' ).invalid">{{errorsMsg}}</mat-error>
   </mat-form-field>
   <button mat-button type="submit">Создать</button>
 </form>
