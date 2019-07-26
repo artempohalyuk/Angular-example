@@ -17,6 +17,9 @@ export class TasksService {
     private _fireBase: FireBase
   ) {}
 
+  /**
+   * Get task and detect sign in user or not
+   */
   getTasks() {
     if ( this._fireBase.authenticated ) {
       return this.usersCollection.doc( this._fireBase.currentUser.uid )
@@ -45,6 +48,10 @@ export class TasksService {
     }
   }
 
+  /**
+   * Save task id to our array of tasks
+   * @param tasks - current user array of tasks
+   */
   addTaskIdToCollection( tasks ) {
     return tasks.map(
       task => {
@@ -55,6 +62,10 @@ export class TasksService {
     );
   }
 
+  /**
+   * add new task to our collection
+   * @param formValue - form data
+   */
   createTask( formValue ) {
     const docID = this._fireStore.createId();
     formValue.created_at = Math.floor(Date.now() / 1000);

@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * init login form
+   */
   initForm() {
     this.loginForm = this._fb.group({
       email: [ '', [ Validators.required, Validators.email ] ],
@@ -30,12 +33,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * open registration modal
+   */
   onOpenRegistation() {
     this._dialog.open( RegistrationComponent, {
       autoFocus: false
     } );
   }
 
+  /**
+   * sign in to system
+   */
   onSignIn() {
     const email = this.loginForm.get( 'email' ).value;
     const password = this.loginForm.get( 'password' ).value;

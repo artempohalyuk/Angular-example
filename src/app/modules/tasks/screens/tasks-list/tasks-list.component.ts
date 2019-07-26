@@ -23,6 +23,9 @@ export class TasksListComponent implements OnInit {
 
   }
 
+  /**
+   * Open modal for create task
+   */
   onOpenCreateTaskModal() {
     this._dialog.open( CreateTaskComponent, {
       autoFocus: false

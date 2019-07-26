@@ -9,6 +9,9 @@ import { FireBase } from './core/firebase.service';
 export class AppComponent {
   constructor( public fireBase: FireBase ) {}
 
+  /**
+   * sign out from system
+   */
   onSignOut() {
     this.fireBase.signOut();
   }

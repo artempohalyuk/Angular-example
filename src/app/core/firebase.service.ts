@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 import { environment } from '../../environments/environment';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { ITaskResponse } from '../modules/tasks/models/task.model';
 
@@ -30,14 +30,22 @@ export class FireBase {
     return this.currentUser !== null;
   }
 
-  getAuthenticated(): boolean {
-    return this.currentUser !== null;
-  }
+  // getAuthenticated(): boolean {
+  //   return this.currentUser !== null;
+  // }
 
-  getCurrentUserObservable(): any {
+  /**
+   * return observable of current user state
+   */
+  getCurrentUserObservable(): Observable<any> {
     return this._fireAuth.authState;
   }
 
+  /**
+   * sign in to system
+   * @param email - user email
+   * @param password - user password
+   */
   signIn( email: string, password: string ) {
     return this._fireAuth.auth.signInWithEmailAndPassword( email, password ).then(
       res => {
@@ -50,6 +58,9 @@ export class FireBase {
     );
   }
 
+  /**
+   * sign out from system
+   */
   signOut() {
     return this._fireAuth.auth.signOut()
       .then(
@@ -57,6 +68,11 @@ export class FireBase {
       ).catch( res => console.log( res ) );
   }
 
+  /**
+   * Create new user account
+   * @param email - user email
+   * @param password - user password
+   */
   createUser( email: string, password: string ) {
     return this._fireAuth.auth.createUserWithEmailAndPassword( email, password );
   }

@@ -21,6 +21,9 @@ export class CreateTaskComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * init task form
+   */
   initForm() {
     this.createTaskForm = this._fb.group({
       title: [ '' ],
@@ -29,6 +32,9 @@ export class CreateTaskComponent implements OnInit {
     });
   }
 
+  /**
+   * create new task
+   */
   onCreateTask() {
     this.createTaskForm.value.task_date = Math.floor( Date.parse( this.createTaskForm.get( 'task_date' ).value ) / 1000 );
 

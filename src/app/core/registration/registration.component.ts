@@ -22,6 +22,9 @@ export class RegistrationComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * init registration form
+   */
   initForm() {
     this.registrationForm = this._fb.group({
       email: [ '', [ Validators.required, Validators.email ] ],
@@ -29,6 +32,9 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  /**
+   * create new user
+   */
   onCreateUser() {
     const email = this.registrationForm.get( 'email' ).value;
     const password = this.registrationForm.get( 'password' ).value;
