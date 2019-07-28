@@ -15,7 +15,7 @@
     transition: .5s;
     cursor: pointer;
 
-    &:hover:not( .sidebar-menu__item_logo ) {
+    &:hover:not( .sidebar-menu__item_logo ), &.active {
       background-color: #fff;
       color: #000;
     }

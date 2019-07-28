@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegistrationComponent } from '../registration/registration.component';
 import { FireBase } from '../firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _dialog: MatDialog,
-    private _fireBase: FireBase
+    private _fireBase: FireBase,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -48,7 +50,14 @@ export class LoginComponent implements OnInit {
   onSignIn() {
     const email = this.loginForm.get( 'email' ).value;
     const password = this.loginForm.get( 'password' ).value;
-    this._fireBase.signIn( email, password );
+    this._fireBase.signIn( email, password ).then(
+      success => {
+        this._router.navigate( [ '/home' ] );
+      },
+      error => {
+        this.errorMsg = error.message;
+      }
+    );
   }
 
 }

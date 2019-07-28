@@ -1,0 +1,9 @@
+.home {
+  background: url( 'assets/images/big-hero.jpg' ) no-repeat top right;
+
+  &-tasks {
+    &__description {
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,3 +1,10 @@
-<p>
-  home works!
-</p>
+<div class="home page" *ngIf="user">
+  <h1 class="home__title">Welcome back, {{ user.displayName }}</h1>
+  <div class="home-tasks">
+    <div class="home-tasks__description">
+      <p>Today you have {{ currentDayTasksCount ? currentDayTasksCount : '0' }} task</p>
+    </div>
+    <a href="javascript:void(0)" mat-raised-button color="primary" routerLink="/tasks">Show it</a>
+  </div>
+</div>
+

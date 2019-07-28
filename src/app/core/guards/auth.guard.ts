@@ -9,20 +9,20 @@ import { map } from 'rxjs/operators';
 })
 export class AuthGuard implements CanLoad {
   constructor( private _firebase: FireBase, private router: Router ) {}
-  canLoad( route: Route ) {
-
-      if (this._firebase.authenticated) { return true; }
-
-      return this._firebase.getCurrentUserObservable()
-        .pipe(
-          map(
-            res => {
-              if ( res === null ) {
-                this.router.navigate(['/login']);
-              }
-              return true;
-            }
-          )
-        )
+  canLoad( route: Route ): Promise<boolean> {
+      return this._firebase.getCurrentUserObservable().then(
+        res => {
+          if ( !res ) {
+            this.router.navigate(['/login']);
+            return false;
+          }
+          return true;
+        }
+      ).catch(
+        res => {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      );
   }
 }

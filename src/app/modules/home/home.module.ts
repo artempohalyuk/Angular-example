@@ -9,20 +9,23 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
 import { HomeComponent } from './home.component';
+import { TasksService } from '../tasks/services/tasks.service';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({
     imports: [
-      MatIconModule,
-      MatToolbarModule,
-      MatSidenavModule,
-      MatListModule,
+      CommonModule,
+      MaterialModule,
       RouterModule.forChild(routes)
     ],
     declarations: [ HomeComponent ],
+    providers: [
+      TasksService
+    ]
 })
 
 export class HomeModule { }

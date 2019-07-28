@@ -1,11 +1,19 @@
 <form class="form" [formGroup]="inputForm">
+  <mat-form-field class="form__field" *ngIf="inputForm.get( 'nickname' )">
+    <input type="nickname"
+      matInput
+      placeholder="Enter your nickname"
+      formControlName="nickname"
+      required>
+    <mat-error>{{errorsMsg}}</mat-error>
+  </mat-form-field>
   <mat-form-field class="form__field">
     <input type="email"
       matInput
       placeholder="Enter your email"
       formControlName="email"
       required>
-    <mat-error *ngIf="inputForm.get( 'email' ).invalid">{{errorsMsg}}</mat-error>
+    <mat-error>{{errorsMsg}}</mat-error>
   </mat-form-field>
   <mat-form-field class="form__field">
     <input type="password"
@@ -13,6 +21,7 @@
       placeholder="Enter your password"
       formControlName="password"
       required>
-    <mat-error *ngIf="errorsMsg">{{errorsMsg}}</mat-error>
+    <mat-error>{{errorsMsg}}</mat-error>
   </mat-form-field>
+  <p *ngIf="errorsMsg">{{ errorsMsg }}</p>
 </form>

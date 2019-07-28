@@ -27,6 +27,7 @@ export class RegistrationComponent implements OnInit {
    */
   initForm() {
     this.registrationForm = this._fb.group({
+      nickname: [ '', Validators.required ],
       email: [ '', [ Validators.required, Validators.email ] ],
       password: [ '', Validators.required ]
     });
@@ -36,10 +37,11 @@ export class RegistrationComponent implements OnInit {
    * create new user
    */
   onCreateUser() {
+    const nickname = this.registrationForm.get( 'nickname' ).value;
     const email = this.registrationForm.get( 'email' ).value;
     const password = this.registrationForm.get( 'password' ).value;
 
-    this._firebase.createUser( email, password )
+    this._firebase.createUser( email, password, nickname )
       .then(
         res => {
           console.log( res );

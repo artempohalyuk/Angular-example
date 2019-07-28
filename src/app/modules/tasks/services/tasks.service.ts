@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map, mergeMap } from 'rxjs/operators';
-import { ITaskResponse } from '../models/task.model';
+import { ITaskResponse, TaskModel } from '../models/task.model';
+import * as moment from 'moment';
 
 @Injectable()
 export class TasksService {
@@ -77,5 +78,22 @@ export class TasksService {
       .catch(
         res => console.log( res )
       );
+  }
+
+  /**
+   * How many tasks you have todat, return count
+   */
+  getCurrentDayTasksCount( tasksList: Array<TaskModel> ) {
+    const today = new Date();
+
+    return tasksList.filter(
+      task => {
+        const taskDay = new Date( +task.task_date * 1000 );
+
+        if ( ( today.getDate() === taskDay.getDate() ) && ( today.getFullYear() && taskDay.getFullYear() ) ) {
+          return task;
+        }
+      }
+    ).length;
   }
 }

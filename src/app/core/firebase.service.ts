@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, of, Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, first, take } from 'rxjs/operators';
 import { ITaskResponse } from '../modules/tasks/models/task.model';
 
 @Injectable({
@@ -26,7 +26,6 @@ export class FireBase {
   }
 
   get authenticated(): boolean {
-    console.log( this.currentUser )
     return this.currentUser !== null;
   }
 
@@ -35,10 +34,10 @@ export class FireBase {
   // }
 
   /**
-   * return observable of current user state
+   * return promise of current user state
    */
-  getCurrentUserObservable(): Observable<any> {
-    return this._fireAuth.authState;
+  getCurrentUserObservable(): Promise<any> {
+    return this._fireAuth.authState.pipe( take(1) ).toPromise();
   }
 
   /**
@@ -47,25 +46,14 @@ export class FireBase {
    * @param password - user password
    */
   signIn( email: string, password: string ) {
-    return this._fireAuth.auth.signInWithEmailAndPassword( email, password ).then(
-      res => {
-        console.log( res );
-        // this.userCollectionRef = this._fireStore.collection( 'users' ).doc( this.userId );
-      }
-    )
-    .catch(
-      res => console.log( res )
-    );
+    return this._fireAuth.auth.signInWithEmailAndPassword( email, password );
   }
 
   /**
    * sign out from system
    */
   signOut() {
-    return this._fireAuth.auth.signOut()
-      .then(
-        res => console.log( res )
-      ).catch( res => console.log( res ) );
+    return this._fireAuth.auth.signOut();
   }
 
   /**
@@ -73,7 +61,13 @@ export class FireBase {
    * @param email - user email
    * @param password - user password
    */
-  createUser( email: string, password: string ) {
-    return this._fireAuth.auth.createUserWithEmailAndPassword( email, password );
+  createUser( email: string, password: string, nickname: string ) {
+    return this._fireAuth.auth.createUserWithEmailAndPassword( email, password )
+      .then(
+        res => {
+          res.user.updateProfile( { displayName: nickname } );
+          return res;
+        }
+      );
   }
 }

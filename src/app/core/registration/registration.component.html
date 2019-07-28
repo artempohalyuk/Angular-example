@@ -1,7 +1,14 @@
-<app-authorize-form
-  [inputForm]="registrationForm"
-  [errorsMsg]="errorMsg"></app-authorize-form>
-<button mat-dialog-close><mat-icon aria-hidden="false" aria-label="close-icon">close</mat-icon></button>
+<h2 mat-dialog-title align="center">Register</h2>
+<div mat-dialog-content>
+    <app-authorize-form
+      [inputForm]="registrationForm"
+      [errorsMsg]="errorMsg"></app-authorize-form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-raised-button color="primary" (click)="onCreateUser()">Зарегистрироваться</button>
+  <button mat-button mat-dialog-close>Отмена</button>
+</mat-dialog-actions>
 
-<button mat-dialog-close>Отмена</button>
-<button (click)="onCreateUser()">Зарегистрироваться</button>
+<!-- <button mat-dialog-close><mat-icon aria-hidden="false" aria-label="close-icon">close</mat-icon></button> -->
+
+
